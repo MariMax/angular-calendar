@@ -13,13 +13,6 @@ import { WeekViewHourSegment } from 'calendar-utils';
       let-daysInWeek="daysInWeek"
     >
       <div
-        [attr.aria-hidden]="
-          {}
-            | calendarA11y
-              : (daysInWeek === 1
-                  ? 'hideDayHourSegment'
-                  : 'hideWeekHourSegment')
-        "
         class="cal-hour-segment"
         [style.height.px]="segmentHeight"
         [class.cal-hour-start]="segment.isStart"

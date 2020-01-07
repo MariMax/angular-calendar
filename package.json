@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node --max_old_space_size=8192 ./node_modules/.bin/ng serve --open",
     "build:copy-package-json": "copyfiles package.json projects/angular-calendar",
-    "build:lib": "ng build angular-calendar",
+    "build:lib": "ng build angular-calendar --single-bundle --prod",
     "build:date-adapters": "tsc -p tsconfig-date-adapters.json",
     "build:styles": "node-sass projects/angular-calendar/src/angular-calendar.scss | postcss --output dist/angular-calendar/css/angular-calendar.css",
     "build:clean": "del-cli dist",
@@ -78,6 +78,7 @@
     "@angular/compiler": "^8.2.14",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/core": "^8.2.14",
+    "@angular/elements": "^8.2.14",
     "@angular/forms": "^8.2.14",
     "@angular/language-service": "^8.2.14",
     "@angular/platform-browser": "^8.2.14",
@@ -125,6 +126,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "ng-packagr": "^5.7.1",
+    "ngx-build-plus": "^9.0.2",
     "ngx-clipboard": "^12.2.1",
     "ngx-contextmenu": "^5.2.0",
     "ngx-perfect-scrollbar": "^8.0.0",
@@ -158,6 +160,7 @@
     "angular-draggable-droppable": "^4.3.8",
     "angular-resizable-element": "^3.2.6",
     "calendar-utils": "^0.7.0",
+    "document-register-element": "^1.7.2",
     "positioning": "^2.0.0"
   },
   "sideEffects": [
@@ -166,7 +169,7 @@
   ],
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -e",
+      "commit-msg": "commitlint -e && exit 1",
       "pre-commit": "pretty-quick --staged"
     }
   }

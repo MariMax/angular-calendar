@@ -60,6 +60,8 @@ export class CalendarWeekViewCurrentTimeMarkerComponent implements OnChanges {
 
   @Input() customTemplate: TemplateRef<any>;
 
+  @Input() dateAdapter: DateAdapter;
+
   private columnDate$ = new BehaviorSubject<Date>(this.columnDate);
 
   marker$: Observable<{ isVisible: boolean; top: number }> = interval(
@@ -90,8 +92,6 @@ export class CalendarWeekViewCurrentTimeMarkerComponent implements OnChanges {
       };
     })
   );
-
-  constructor(private dateAdapter: DateAdapter) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.columnDate) {

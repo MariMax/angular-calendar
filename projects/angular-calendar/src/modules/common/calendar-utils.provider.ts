@@ -12,9 +12,12 @@ import {
 } from 'calendar-utils';
 import { DateAdapter } from '../../date-adapters/date-adapter';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CalendarUtils {
-  constructor(protected dateAdapter: DateAdapter) {}
+  public dateAdapter: DateAdapter;
+  // constructor(protected dateAdapter: DateAdapter) {}
 
   getMonthView(args: GetMonthViewArgs): MonthView {
     return getMonthView(this.dateAdapter, args);

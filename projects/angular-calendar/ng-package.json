@@ -12,6 +12,7 @@
     "tslib",
     "angular-draggable-droppable",
     "angular-resizable-element",
+    "document-register-element",
     "calendar-utils",
     "positioning"
   ]

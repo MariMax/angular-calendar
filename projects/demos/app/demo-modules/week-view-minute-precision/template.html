@@ -2,5 +2,9 @@
   precision="minutes"
   [viewDate]="viewDate"
   [events]="events"
+  [dateAdapter]="dateAdapter"
+  [events]="events"
+  [refresh]="refresh"
+  (eventTimesChanged)="eventTimesChanged($event)"
 >
 </mwl-calendar-week-view>

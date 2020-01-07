@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResizableModule } from 'angular-resizable-element';
 import { DragAndDropModule } from 'angular-draggable-droppable';
@@ -8,6 +8,7 @@ import { CalendarWeekViewEventComponent } from './calendar-week-view-event.compo
 import { CalendarCommonModule } from '../common/calendar-common.module';
 import { CalendarWeekViewHourSegmentComponent } from './calendar-week-view-hour-segment.component';
 import { CalendarWeekViewCurrentTimeMarkerComponent } from './calendar-week-view-current-time-marker.component';
+import { createCustomElement } from '@angular/elements';
 
 export {
   CalendarWeekViewComponent,
@@ -35,13 +36,19 @@ export { getWeekViewPeriod } from '../common/util';
     CalendarWeekViewCurrentTimeMarkerComponent
   ],
   exports: [
-    ResizableModule,
-    DragAndDropModule,
-    CalendarWeekViewComponent,
-    CalendarWeekViewHeaderComponent,
-    CalendarWeekViewEventComponent,
-    CalendarWeekViewHourSegmentComponent,
-    CalendarWeekViewCurrentTimeMarkerComponent
-  ]
+    //   ResizableModule,
+    //   DragAndDropModule,
+    CalendarWeekViewComponent
+    //   CalendarWeekViewHeaderComponent,
+    //   CalendarWeekViewEventComponent,
+    //   CalendarWeekViewHourSegmentComponent,
+    //   CalendarWeekViewCurrentTimeMarkerComponent
+  ],
+  entryComponents: [CalendarWeekViewComponent]
 })
-export class CalendarWeekModule {}
+export class CalendarWeekModule {
+  constructor(injector: Injector) {
+    const weekCE = createCustomElement(CalendarWeekViewComponent, { injector });
+    customElements.define('calendar-week-view-component', weekCE);
+  }
+}

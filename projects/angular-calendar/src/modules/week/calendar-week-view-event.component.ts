@@ -33,27 +33,10 @@ import { PlacementArray } from 'positioning';
           backgroundColor: weekEvent.event.color?.secondary,
           borderColor: weekEvent.event.color?.primary
         }"
-        [mwlCalendarTooltip]="
-          !tooltipDisabled
-            ? (weekEvent.event.title
-              | calendarEventTitle
-                : (daysInWeek === 1 ? 'dayTooltip' : 'weekTooltip')
-                : weekEvent.event)
-            : ''
-        "
-        [tooltipPlacement]="tooltipPlacement"
-        [tooltipEvent]="weekEvent.event"
-        [tooltipTemplate]="tooltipTemplate"
-        [tooltipAppendToBody]="tooltipAppendToBody"
-        [tooltipDelay]="tooltipDelay"
         (mwlClick)="eventClicked.emit({ sourceEvent: $event })"
         (mwlKeydownEnter)="eventClicked.emit({ sourceEvent: $event })"
         tabindex="0"
         role="application"
-        [attr.aria-label]="
-          { event: weekEvent.event, locale: locale }
-            | calendarA11y: 'eventDescription'
-        "
       >
         <mwl-calendar-event-actions
           [event]="weekEvent.event"

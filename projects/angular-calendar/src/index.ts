@@ -2,4 +2,8 @@
  * Public API Surface of angular-calendar
  */
 
-export * from './modules/calendar.module';
+export { CalendarUtils } from './modules/common/calendar-utils.provider';
+// export * from './date-adapters/date-fns';
+
+export * from './modules/common/calendar-common.module';
+export * from './modules/week/calendar-week.module';

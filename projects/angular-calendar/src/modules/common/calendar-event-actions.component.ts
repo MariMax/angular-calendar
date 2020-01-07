@@ -22,9 +22,6 @@ import { CalendarEvent, EventAction } from 'calendar-utils';
           [innerHtml]="action.label"
           tabindex="0"
           role="button"
-          [attr.aria-label]="
-            { action: action } | calendarA11y: 'actionButtonLabel'
-          "
         >
         </a>
       </span>

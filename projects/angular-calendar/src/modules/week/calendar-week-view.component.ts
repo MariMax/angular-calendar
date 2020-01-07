@@ -17,11 +17,8 @@ import {
   CalendarEvent,
   WeekViewAllDayEvent,
   WeekView,
-  ViewPeriod,
   WeekViewHourColumn,
   WeekViewTimeEvent,
-  WeekViewHourSegment,
-  WeekViewHour,
   WeekViewAllDayEventRow
 } from 'calendar-utils';
 import { ResizeEvent } from 'angular-resizable-element';
@@ -242,6 +239,7 @@ export interface CalendarWeekViewBeforeRenderEvent extends WeekView {
             *ngFor="let column of view.hourColumns; trackBy: trackByHourColumn"
           >
             <mwl-calendar-week-view-current-time-marker
+              [dateAdapter]="dateAdapter"
               [columnDate]="column.date"
               [dayStartHour]="dayStartHour"
               [dayStartMinute]="dayStartMinute"
@@ -545,6 +543,10 @@ export class CalendarWeekViewComponent implements OnChanges, OnInit, OnDestroy {
    * A custom template to use for the current time marker
    */
   @Input() currentTimeMarkerTemplate: TemplateRef<any>;
+  /**
+   * A custom template to use for the current time marker
+   */
+  @Input() dateAdapter: DateAdapter;
 
   /**
    * Called when a header week day is clicked. Adding a `cssClass` property on `$event.day` will add that class to the header element
@@ -699,8 +701,8 @@ export class CalendarWeekViewComponent implements OnChanges, OnInit, OnDestroy {
   constructor(
     protected cdr: ChangeDetectorRef,
     protected utils: CalendarUtils,
-    @Inject(LOCALE_ID) locale: string,
-    protected dateAdapter: DateAdapter
+    @Inject(LOCALE_ID) locale: string
+    // protected dateAdapter: DateAdapter
   ) {
     this.locale = locale;
   }
@@ -721,6 +723,7 @@ export class CalendarWeekViewComponent implements OnChanges, OnInit, OnDestroy {
    * @hidden
    */
   ngOnChanges(changes: any): void {
+    this.utils.dateAdapter = this.dateAdapter;
     const refreshHeader =
       changes.viewDate ||
       changes.excludeDays ||

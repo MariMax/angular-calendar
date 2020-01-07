@@ -10,14 +10,11 @@ import { CalendarPreviousViewDirective } from './calendar-previous-view.directiv
 import { CalendarNextViewDirective } from './calendar-next-view.directive';
 import { CalendarTodayDirective } from './calendar-today.directive';
 import { CalendarDatePipe } from './calendar-date.pipe';
-import { CalendarEventTitlePipe } from './calendar-event-title.pipe';
 import { ClickDirective } from './click.directive';
 import { KeydownEnterDirective } from './keydown-enter.directive';
 import { CalendarEventTitleFormatter } from './calendar-event-title-formatter.provider';
 import { CalendarDateFormatter } from './calendar-date-formatter.provider';
 import { CalendarUtils } from './calendar-utils.provider';
-import { CalendarA11y } from './calendar-a11y.provider';
-import { CalendarA11yPipe } from './calendar-a11y.pipe';
 
 export interface CalendarModuleConfig {
   eventTitleFormatter?: Provider;
@@ -32,7 +29,6 @@ export * from './calendar-native-date-formatter.provider';
 export * from './calendar-angular-date-formatter.provider';
 export * from './calendar-date-formatter.provider';
 export * from './calendar-utils.provider';
-export * from './calendar-a11y.provider';
 export * from './calendar-a11y.interface';
 export * from './calendar-date-formatter.interface';
 export * from './calendar-event-times-changed-event.interface';
@@ -72,8 +68,6 @@ export {
     CalendarNextViewDirective,
     CalendarTodayDirective,
     CalendarDatePipe,
-    CalendarEventTitlePipe,
-    CalendarA11yPipe,
     ClickDirective,
     KeydownEnterDirective
   ],
@@ -87,8 +81,6 @@ export {
     CalendarNextViewDirective,
     CalendarTodayDirective,
     CalendarDatePipe,
-    CalendarEventTitlePipe,
-    CalendarA11yPipe,
     ClickDirective,
     KeydownEnterDirective
   ],
@@ -104,10 +96,8 @@ export class CalendarCommonModule {
       ngModule: CalendarCommonModule,
       providers: [
         dateAdapter,
-        config.eventTitleFormatter || CalendarEventTitleFormatter,
         config.dateFormatter || CalendarDateFormatter,
-        config.utils || CalendarUtils,
-        config.a11y || CalendarA11y
+        config.utils || CalendarUtils
       ]
     };
   }

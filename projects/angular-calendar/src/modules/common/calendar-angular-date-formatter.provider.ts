@@ -13,7 +13,8 @@ import { getWeekViewPeriod } from './util';
 @Injectable()
 export class CalendarAngularDateFormatter
   implements CalendarDateFormatterInterface {
-  constructor(protected dateAdapter: DateAdapter) {}
+  public dateAdapter: DateAdapter;
+  // constructor(protected dateAdapter: DateAdapter) {}
 
   /**
    * The month view header week day labels
