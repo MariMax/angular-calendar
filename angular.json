@@ -117,14 +117,15 @@
           },
           "configurations": {
             "production": {
-              "optimization": false,
+              "optimization": true,
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": false,
               "vendorChunk": false,
-              "buildOptimizer": false
+              "buildOptimizer": false,
+              "keepPolyfills": false
             }
           }
         },
