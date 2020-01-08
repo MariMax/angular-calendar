@@ -6,15 +6,85 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Angular 6.0+ calendar</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/angular-calendar.css" />
   </head>
   <body>
-    <calendar-week-view-component id="component"
-      >Loading demo...</calendar-week-view-component
+    <mwl-calendar-week-view id="component"
+      >Loading demo...</mwl-calendar-week-view
     >
     <script src="main-es2015.js" type="module"></script>
     <script type="module">
-      // import { adapterFactory } from './main-es2015';
-      // console.log(adapterFactory);
+      (function() {
+        const component = document.querySelector('#component');
+        console.log(component);
+        const refresh = {
+          subscriptions: [],
+          subscribe: fn => {
+            this.subscriptions.push(fn);
+          },
+          next: () => {
+            this.subscriptions.forEach(x => x());
+          }
+        };
+        const colors = {
+          red: {
+            primary: '#ad2121',
+            secondary: '#FAE3E3'
+          },
+          blue: {
+            primary: '#1e90ff',
+            secondary: '#D1E8FF'
+          },
+          yellow: {
+            primary: '#e3bc08',
+            secondary: '#FDF1BA'
+          }
+        };
+
+        const viewDate = new Date();
+        const events = [
+          {
+            start: new Date(),
+            end: new Date(new Date().valueOf() + 1000 * 60 * 60),
+            title: 'Event 1',
+            color: colors.red,
+            allDay: false,
+            draggable: true,
+            resizable: {
+              beforeStart: true,
+              afterEnd: true
+            }
+          }
+          // {
+          //   start: addHours(startOfDay(addDays(new Date(), 1)), 2),
+          //   end: addHours(startOfDay(addDays(new Date(), 1)), 18),
+          //   title: 'Event 2',
+          //   color: colors.blue,
+          //   allDay: false,
+          //   draggable: true
+          // },
+          // {
+          //   start: addHours(startOfDay(new Date()), 8),
+          //   title: 'Event 3',
+          //   color: colors.blue,
+          //   allDay: false,
+          //   draggable: true
+          // }
+        ];
+
+        const eventTimesChanged = ({ event, newStart, newEnd }) => {
+          event.start = newStart;
+          event.end = newEnd;
+          refresh.next();
+        };
+
+        component.events = events;
+        component.viewDate = viewDate;
+        component.refresh = refresh;
+        // component.ngOnInit();
+        // refresh.next();
+        component.addEventListener('eventTimesChanged', eventTimesChanged);
+      })();
     </script>
   </body>
 </html>

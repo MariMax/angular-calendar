@@ -53,6 +53,7 @@ import {
   ValidateDrag
 } from 'angular-draggable-droppable';
 import { PlacementArray } from 'positioning';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 export interface WeekViewAllDayEventResize {
   originalOffset: number;
@@ -546,7 +547,7 @@ export class CalendarWeekViewComponent implements OnChanges, OnInit, OnDestroy {
   /**
    * A custom template to use for the current time marker
    */
-  @Input() dateAdapter: DateAdapter;
+  @Input() dateAdapter: DateAdapter = adapterFactory();
 
   /**
    * Called when a header week day is clicked. Adding a `cssClass` property on `$event.day` will add that class to the header element
