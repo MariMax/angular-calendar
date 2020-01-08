@@ -17,13 +17,13 @@
       (function() {
         const component = document.querySelector('#component');
         console.log(component);
+        const subscriptions = [];
         const refresh = {
-          subscriptions: [],
           subscribe: fn => {
-            this.subscriptions.push(fn);
+            subscriptions.push(fn);
           },
           next: () => {
-            this.subscriptions.forEach(x => x());
+            subscriptions.forEach(x => x());
           }
         };
         const colors = {
@@ -45,7 +45,7 @@
         const events = [
           {
             start: new Date(),
-            end: new Date(new Date().valueOf() + 1000 * 60 * 60),
+            // end: new Date(new Date().valueOf() + 1000 * 60 * 60),
             title: 'Event 1',
             color: colors.red,
             allDay: false,
@@ -72,7 +72,8 @@
           // }
         ];
 
-        const eventTimesChanged = ({ event, newStart, newEnd }) => {
+        const eventTimesChanged = evt => {
+          const { event, newStart, newEnd } = evt.detail;
           event.start = newStart;
           event.end = newEnd;
           refresh.next();
@@ -81,6 +82,7 @@
         component.events = events;
         component.viewDate = viewDate;
         component.refresh = refresh;
+        component.initRefresher();
         // component.ngOnInit();
         // refresh.next();
         component.addEventListener('eventTimesChanged', eventTimesChanged);
