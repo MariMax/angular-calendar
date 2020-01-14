@@ -100,7 +100,7 @@
         }
       }
     },
-    "angular-calendar": {
+    "wc-angular-calendar": {
       "root": "projects/angular-calendar",
       "sourceRoot": "projects/angular-calendar/src",
       "projectType": "library",
@@ -109,7 +109,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/angular-calendar",
+            "outputPath": "dist/wc-angular-calendar",
             "index": "projects/angular-calendar/src/index.html",
             "main": "projects/angular-calendar/src/index.ts",
             "tsConfig": "projects/angular-calendar/tsconfig.lib.json",
@@ -148,6 +148,21 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        }
+      }
+    },
+    "ng-angular-calendar": {
+      "root": "projects/angular-calendar",
+      "sourceRoot": "projects/angular-calendar/src",
+      "projectType": "library",
+      "prefix": "mwl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-calendar/tsconfig.lib.json",
+            "project": "projects/angular-calendar/ng-package.json"
           }
         }
       }

@@ -1,8 +1,8 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/angular-calendar",
+  "dest": "../../dist/ng-angular-calendar",
   "lib": {
-    "entryFile": "src/index.ts",
+    "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "angular-draggable-droppable": "angular-draggable-droppable",
       "angular-resizable-element": "angular-resizable-element"
